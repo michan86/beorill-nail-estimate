@@ -2,400 +2,347 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beorill ネイル見積もり</title>
+
   <style>
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: "Hiragino Sans", "Yu Gothic", "YuGothic", sans-serif;
-      background: #f6f1ed;
-      color: #333;
-      line-height: 1.7;
+    body{
+      margin:0;
+      font-family:sans-serif;
+      background:#f7f3ef;
+      color:#333;
     }
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 24px 16px 80px;
+    .container{
+      max-width:700px;
+      margin:0 auto;
+      padding:20px;
     }
 
-    .header {
-      text-align: center;
-      padding: 32px 16px 24px;
+    .title{
+      text-align:center;
+      margin:30px 0;
     }
 
-    .shop-name {
-      font-size: 38px;
-      letter-spacing: 0.08em;
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 400;
-      margin: 0;
+    .title h1{
+      margin:0;
+      font-size:38px;
     }
 
-    .subtitle {
-      margin-top: 8px;
-      font-size: 15px;
-      color: #777;
+    .title p{
+      color:#777;
+      margin-top:8px;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    .card{
+      background:#fff;
+      border-radius:20px;
+      padding:20px;
+      margin-bottom:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
     }
 
-    .section-title {
-      font-size: 18px;
-      margin: 0 0 14px;
-      border-left: 4px solid #8c7b72;
-      padding-left: 10px;
+    h2{
+      margin-top:0;
+      font-size:20px;
     }
 
-    label {
-      display: block;
-      font-weight: 600;
-      margin: 16px 0 6px;
+    label{
+      display:block;
+      margin-top:15px;
+      margin-bottom:5px;
+      font-weight:bold;
     }
 
-    select,
-    input[type="number"],
-    input[type="text"] {
-      width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 16px;
-      background: #fff;
+    select,input{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid #ddd;
+      font-size:16px;
     }
 
-    .radio-group {
-      display: grid;
-      gap: 10px;
-      margin-top: 8px;
+    .result{
+      background:#333;
+      color:#fff;
+      border-radius:20px;
+      padding:25px;
+      position:sticky;
+      bottom:0;
     }
 
-    .radio-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      background: #fafafa;
-      cursor: pointer;
+    .price{
+      font-size:38px;
+      font-weight:bold;
+      margin:10px 0;
     }
 
-    .radio-item input {
-      transform: scale(1.2);
+    .line-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      background:#06C755;
+      color:#fff;
+      text-decoration:none;
+      padding:15px;
+      border-radius:999px;
+      margin-top:20px;
+      font-weight:bold;
+      font-size:16px;
     }
 
-    .note {
-      font-size: 13px;
-      color: #777;
-      margin-top: 8px;
+    .copy-btn{
+      width:100%;
+      border:none;
+      padding:15px;
+      border-radius:999px;
+      margin-top:12px;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    .result-card {
-      position: sticky;
-      bottom: 0;
-      background: #3f3a37;
-      color: #fff;
-      border-radius: 22px 22px 0 0;
-      padding: 22px;
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
-      margin: 24px -16px -80px;
+    .note{
+      font-size:13px;
+      color:#ddd;
+      margin-top:15px;
+      line-height:1.6;
     }
 
-    .result-title {
-      font-size: 15px;
-      opacity: 0.85;
-      margin: 0;
+    .breakdown{
+      background:rgba(255,255,255,0.1);
+      padding:15px;
+      border-radius:15px;
+      margin-top:15px;
     }
 
-    .price {
-      font-size: 34px;
-      font-weight: 700;
-      margin: 6px 0 12px;
+    .row{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:8px;
     }
 
-    .breakdown {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 12px;
-      font-size: 14px;
-      margin-top: 12px;
-    }
-
-    .breakdown-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 6px 0;
-    }
-
-    .breakdown-row:last-child {
-      border-bottom: none;
-    }
-
-    .warning {
-      font-size: 13px;
-      color: #f5e5d8;
-      margin: 14px 0 0;
-    }
-
-    .line-button {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      background: #06c755;
-      color: #fff;
-      border-radius: 999px;
-      padding: 14px 16px;
-      font-weight: 700;
-      margin-top: 16px;
-    }
-
-    .copy-button {
-      width: 100%;
-      border: none;
-      background: #fff;
-      color: #3f3a37;
-      border-radius: 999px;
-      padding: 13px 16px;
-      font-size: 15px;
-      font-weight: 700;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    .small-text {
-      font-size: 12px;
-      opacity: 0.8;
-      text-align: center;
-      margin-top: 8px;
-    }
-
-    @media (min-width: 768px) {
-      .result-card {
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: 22px;
-      }
+    .row:last-child{
+      margin-bottom:0;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <header class="header">
-      <h1 class="shop-name">Beorill</h1>
-      <div class="subtitle">ネイル概算見積もり</div>
-    </header>
 
-    <section class="card">
-      <h2 class="section-title">メニュー選択</h2>
+<div class="container">
 
-      <label for="menu">ご希望のメニュー</label>
-      <select id="menu">
-        <option value="5500" data-name="クリア">クリア　¥5,500</option>
-        <option value="6000" data-name="ワンカラー">ワンカラー　¥6,000</option>
-        <option value="6800" data-name="マグネット・フラッシュ">マグネット・フラッシュ　¥6,800</option>
-        <option value="6500" data-name="グラデーション">グラデーション　¥6,500</option>
-        <option value="7500" data-name="ミラー">ミラー　¥7,500</option>
-        <option value="7800" data-name="ベイビーブーマー">ベイビーブーマー　¥7,800</option>
-        <option value="8500" data-name="フレンチ">フレンチ　¥8,500</option>
-        <option value="10700" data-name="フレンチ マグネット・フラッシュベース">フレンチ マグネット・フラッシュベース　¥10,700</option>
-      </select>
-
-      <label>ハンド・フット</label>
-      <div class="radio-group">
-        <label class="radio-item">
-          <input type="radio" name="foot" value="0" data-name="ハンド" checked />
-          ハンド　追加なし
-        </label>
-        <label class="radio-item">
-          <input type="radio" name="foot" value="1100" data-name="フット変更" />
-          フット変更　+¥1,100
-        </label>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 class="section-title">オプション</h2>
-
-      <label for="para">パラジェル変更</label>
-      <select id="para">
-        <option value="0" data-name="なし">なし</option>
-        <option value="1100" data-name="パラジェル変更">あり　+¥1,100</option>
-      </select>
-
-      <label for="top">マット・ハードトップ変更</label>
-      <select id="top">
-        <option value="0" data-name="なし">なし</option>
-        <option value="110" data-name="マット・ハードトップ変更">あり　+¥110 / 本</option>
-      </select>
-
-      <label for="topCount">マット・ハードトップ変更の本数</label>
-      <input id="topCount" type="number" min="0" max="10" value="0" />
-
-      <label for="lengthCount">長さ出しの本数</label>
-      <input id="lengthCount" type="number" min="0" max="10" value="0" />
-      <div class="note">長さ出しは1本 ¥660です。</div>
-
-      <label for="repairCount">亀裂補強の本数</label>
-      <input id="repairCount" type="number" min="0" max="10" value="0" />
-      <div class="note">亀裂補強は1本 ¥440です。</div>
-    </section>
-
-    <section class="card">
-      <h2 class="section-title">オフについて</h2>
-
-      <label for="off">オフの種類</label>
-      <select id="off">
-        <option value="0" data-name="オフなし">オフなし　¥0</option>
-        <option value="0" data-name="ご新規様ハンドオフ">ご新規様ハンドオフ　¥0</option>
-        <option value="0" data-name="当店ハンドオフ 30日以内">当店ハンドオフ 30日以内　¥0</option>
-        <option value="1100" data-name="当店ハンドオフ 31日以上">当店ハンドオフ 31日以上　¥1,100</option>
-        <option value="1500" data-name="再来他店ハンドオフ">再来他店ハンドオフ　¥1,500</option>
-        <option value="5000" data-name="当店オフのみ">当店オフのみ　¥5,000</option>
-        <option value="1100" data-name="ご新規様フットオフ">ご新規様フットオフ　¥1,100</option>
-        <option value="550" data-name="当店フットオフ">当店フットオフ　¥550</option>
-      </select>
-      <div class="note">長さ出し・パーツ等がある場合は、別途料金がかかる場合があります。</div>
-    </section>
-
-    <section class="result-card">
-      <p class="result-title">概算見積もり</p>
-      <div class="price" id="totalPrice">¥0</div>
-
-      <div class="breakdown" id="breakdown"></div>
-
-      <p class="warning">
-        ※パーツ・特殊アート料金は含まれておりません。<br />
-        デザイン画像確認後、正式なお見積もりをご案内いたします。
-      </p>
-
-      <button class="copy-button" onclick="copyEstimate()">見積もり内容をコピーする</button>
-
-      <!-- 公式LINEのURLを入れる場合は、下の # をLINEリンクに変更してください -->
-      <a class="line-button" href="#" onclick="alert('ここに公式LINEのURLを設定してください'); return false;">
-        LINEで相談する
-      </a>
-      <div class="small-text">コピーした内容をLINEに貼り付けて送信してください。</div>
-    </section>
+  <div class="title">
+    <h1>Beorill</h1>
+    <p>ネイル概算見積もり</p>
   </div>
 
-  <script>
-    const menu = document.getElementById("menu");
-    const para = document.getElementById("para");
-    const top = document.getElementById("top");
-    const topCount = document.getElementById("topCount");
-    const lengthCount = document.getElementById("lengthCount");
-    const repairCount = document.getElementById("repairCount");
-    const off = document.getElementById("off");
-    const totalPrice = document.getElementById("totalPrice");
-    const breakdown = document.getElementById("breakdown");
+  <div class="card">
 
-    const inputs = [menu, para, top, topCount, lengthCount, repairCount, off];
-    inputs.forEach(input => input.addEventListener("input", calculate));
-    document.querySelectorAll('input[name="foot"]').forEach(input => {
-      input.addEventListener("change", calculate);
-    });
+    <h2>メニュー選択</h2>
 
-    function yen(num) {
-      return "¥" + Number(num).toLocaleString("ja-JP");
-    }
+    <label>メニュー</label>
+    <select id="menu">
+      <option value="5500">クリア ¥5,500</option>
+      <option value="6000">ワンカラー ¥6,000</option>
+      <option value="6800">マグネット・フラッシュ ¥6,800</option>
+      <option value="6500">グラデーション ¥6,500</option>
+      <option value="7500">ミラー ¥7,500</option>
+      <option value="7800">ベイビーブーマー ¥7,800</option>
+      <option value="8500">フレンチ ¥8,500</option>
+      <option value="10700">フレンチ マグネット・フラッシュベース ¥10,700</option>
+    </select>
 
-    function selectedName(select) {
-      return select.options[select.selectedIndex].dataset.name;
-    }
+    <label>ハンド・フット</label>
+    <select id="foot">
+      <option value="0">ハンド</option>
+      <option value="1100">フット変更 +¥1,100</option>
+    </select>
 
-    function selectedFoot() {
-      return document.querySelector('input[name="foot"]:checked');
-    }
+  </div>
 
-    function clampCount(value) {
-      const number = Number(value || 0);
-      if (number < 0) return 0;
-      if (number > 10) return 10;
-      return number;
-    }
+  <div class="card">
 
-    function calculate() {
-      const rows = [];
-      let total = 0;
+    <h2>オプション</h2>
 
-      const menuPrice = Number(menu.value);
-      total += menuPrice;
-      rows.push({ name: selectedName(menu), price: menuPrice });
+    <label>パラジェル変更</label>
+    <select id="para">
+      <option value="0">なし</option>
+      <option value="1100">あり +¥1,100</option>
+    </select>
 
-      const foot = selectedFoot();
-      const footPrice = Number(foot.value);
-      total += footPrice;
-      if (footPrice > 0) rows.push({ name: foot.dataset.name, price: footPrice });
+    <label>マット・ハードトップ変更 本数</label>
+    <input type="number" id="topCount" value="0" min="0" max="10">
 
-      const paraPrice = Number(para.value);
-      total += paraPrice;
-      if (paraPrice > 0) rows.push({ name: selectedName(para), price: paraPrice });
+    <label>長さ出し 本数</label>
+    <input type="number" id="lengthCount" value="0" min="0" max="10">
 
-      const topUnit = Number(top.value);
-      const topNum = clampCount(topCount.value);
-      topCount.value = topNum;
-      const topPrice = topUnit * topNum;
-      total += topPrice;
-      if (topPrice > 0) rows.push({ name: `マット・ハードトップ変更 ${topNum}本`, price: topPrice });
+    <label>亀裂補強 本数</label>
+    <input type="number" id="repairCount" value="0" min="0" max="10">
 
-      const lengthNum = clampCount(lengthCount.value);
-      lengthCount.value = lengthNum;
-      const lengthPrice = lengthNum * 660;
-      total += lengthPrice;
-      if (lengthPrice > 0) rows.push({ name: `長さ出し ${lengthNum}本`, price: lengthPrice });
+  </div>
 
-      const repairNum = clampCount(repairCount.value);
-      repairCount.value = repairNum;
-      const repairPrice = repairNum * 440;
-      total += repairPrice;
-      if (repairPrice > 0) rows.push({ name: `亀裂補強 ${repairNum}本`, price: repairPrice });
+  <div class="card">
 
-      const offPrice = Number(off.value);
-      total += offPrice;
-      if (selectedName(off) !== "オフなし" || offPrice > 0) {
-        rows.push({ name: selectedName(off), price: offPrice });
-      }
+    <h2>オフについて</h2>
 
-      totalPrice.textContent = yen(total);
-      breakdown.innerHTML = rows.map(row => `
-        <div class="breakdown-row">
-          <span>${row.name}</span>
-          <strong>${yen(row.price)}</strong>
-        </div>
-      `).join("");
+    <label>オフ選択</label>
+    <select id="off">
+      <option value="0">オフなし</option>
+      <option value="0">ご新規様ハンドオフ ¥0</option>
+      <option value="0">当店ハンドオフ30日以内 ¥0</option>
+      <option value="1100">当店ハンドオフ31日以上 ¥1,100</option>
+      <option value="1500">再来他店ハンドオフ ¥1,500</option>
+      <option value="5000">当店オフのみ ¥5,000</option>
+      <option value="1100">ご新規様フットオフ ¥1,100</option>
+      <option value="550">当店フットオフ ¥550</option>
+    </select>
 
-      return { total, rows };
-    }
+  </div>
 
-    function copyEstimate() {
-      const result = calculate();
-      const text = `【Beorill ネイル概算見積もり】\n\n` +
-        result.rows.map(row => `・${row.name}：${yen(row.price)}`).join("\n") +
-        `\n\n合計：${yen(result.total)}\n\n` +
-        `※パーツ・特殊アート料金は含まれておりません。\n` +
-        `※デザイン画像確認後、正式なお見積もりをご案内いたします。`;
+  <div class="result">
 
-      navigator.clipboard.writeText(text).then(() => {
-        alert("見積もり内容をコピーしました。LINEに貼り付けて送信してください。");
-      }).catch(() => {
-        alert("コピーできませんでした。画面の内容をスクリーンショットして送信してください。");
-      });
-    }
+    <div>概算見積もり</div>
 
-    calculate();
-  </script>
+    <div class="price" id="total">¥0</div>
+
+    <div class="breakdown" id="breakdown"></div>
+
+    <div class="note">
+      ※パーツ・特殊アート料金は含まれておりません。<br>
+      デザイン画像確認後、正式なお見積もりをご案内いたします。
+    </div>
+
+    <button class="copy-btn" onclick="copyEstimate()">
+      見積もり内容をコピー
+    </button>
+
+    <a class="line-btn" href="https://lin.ee/wYFjuCh" target="_blank">
+      LINEで相談する
+    </a>
+
+  </div>
+
+</div>
+
+<script>
+
+const menu = document.getElementById("menu");
+const foot = document.getElementById("foot");
+const para = document.getElementById("para");
+const topCount = document.getElementById("topCount");
+const lengthCount = document.getElementById("lengthCount");
+const repairCount = document.getElementById("repairCount");
+const off = document.getElementById("off");
+
+const total = document.getElementById("total");
+const breakdown = document.getElementById("breakdown");
+
+const inputs = [
+  menu,
+  foot,
+  para,
+  topCount,
+  lengthCount,
+  repairCount,
+  off
+];
+
+inputs.forEach(input=>{
+  input.addEventListener("input",calculate);
+});
+
+function yen(num){
+  return "¥" + Number(num).toLocaleString("ja-JP");
+}
+
+function calculate(){
+
+  let totalPrice = 0;
+  let rows = [];
+
+  const menuPrice = Number(menu.value);
+  totalPrice += menuPrice;
+  rows.push(["メニュー",menuPrice]);
+
+  const footPrice = Number(foot.value);
+  totalPrice += footPrice;
+  if(footPrice > 0){
+    rows.push(["フット変更",footPrice]);
+  }
+
+  const paraPrice = Number(para.value);
+  totalPrice += paraPrice;
+  if(paraPrice > 0){
+    rows.push(["パラジェル変更",paraPrice]);
+  }
+
+  const topPrice = Number(topCount.value) * 110;
+  totalPrice += topPrice;
+  if(topPrice > 0){
+    rows.push([`マット変更 ${topCount.value}本`,topPrice]);
+  }
+
+  const lengthPrice = Number(lengthCount.value) * 660;
+  totalPrice += lengthPrice;
+  if(lengthPrice > 0){
+    rows.push([`長さ出し ${lengthCount.value}本`,lengthPrice]);
+  }
+
+  const repairPrice = Number(repairCount.value) * 440;
+  totalPrice += repairPrice;
+  if(repairPrice > 0){
+    rows.push([`亀裂補強 ${repairCount.value}本`,repairPrice]);
+  }
+
+  const offPrice = Number(off.value);
+  totalPrice += offPrice;
+  if(offPrice > 0){
+    rows.push(["オフ料金",offPrice]);
+  }
+
+  total.innerText = yen(totalPrice);
+
+  breakdown.innerHTML = "";
+
+  rows.forEach(row=>{
+
+    breakdown.innerHTML += `
+      <div class="row">
+        <span>${row[0]}</span>
+        <span>${yen(row[1])}</span>
+      </div>
+    `;
+
+  });
+
+}
+
+function copyEstimate(){
+
+  calculate();
+
+  const text =
+`【Beorill ネイル概算見積もり】
+
+合計：${total.innerText}
+
+※パーツ・特殊アート料金は含まれておりません。
+※正式なお見積もりは画像確認後となります。`;
+
+  navigator.clipboard.writeText(text);
+
+  alert("コピーしました！");
+
+}
+
+calculate();
+
+</script>
+
 </body>
 </html>
