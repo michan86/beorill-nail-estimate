@@ -270,17 +270,6 @@
       <div class="note">長さ出し・パーツ等がある場合は、別途料金がかかる場合があります。</div>
     </section>
 
-    <section class="card">
-      <h2 class="section-title">お客様情報</h2>
-
-      <label for="customerName">お名前</label>
-      <input id="customerName" type="text" placeholder="例：山田 花子" />
-
-      <label for="memo">ご希望デザイン・補足</label>
-      <input id="memo" type="text" placeholder="例：画像のような雰囲気希望" />
-      <div class="note">パーツ・特殊アート料金は自動見積もりに含まれておりません。</div>
-    </section>
-
     <section class="result-card">
       <p class="result-title">概算見積もり</p>
       <div class="price" id="totalPrice">¥0</div>
@@ -312,10 +301,8 @@
     const off = document.getElementById("off");
     const totalPrice = document.getElementById("totalPrice");
     const breakdown = document.getElementById("breakdown");
-    const customerName = document.getElementById("customerName");
-    const memo = document.getElementById("memo");
 
-    const inputs = [menu, para, top, topCount, lengthCount, repairCount, off, customerName, memo];
+    const inputs = [menu, para, top, topCount, lengthCount, repairCount, off];
     inputs.forEach(input => input.addEventListener("input", calculate));
     document.querySelectorAll('input[name="foot"]').forEach(input => {
       input.addEventListener("change", calculate);
@@ -395,14 +382,9 @@
 
     function copyEstimate() {
       const result = calculate();
-      const name = customerName.value.trim() || "未入力";
-      const designMemo = memo.value.trim() || "なし";
-
       const text = `【Beorill ネイル概算見積もり】\n\n` +
-        `お名前：${name}\n\n` +
         result.rows.map(row => `・${row.name}：${yen(row.price)}`).join("\n") +
         `\n\n合計：${yen(result.total)}\n\n` +
-        `ご希望デザイン・補足：${designMemo}\n\n` +
         `※パーツ・特殊アート料金は含まれておりません。\n` +
         `※デザイン画像確認後、正式なお見積もりをご案内いたします。`;
 
